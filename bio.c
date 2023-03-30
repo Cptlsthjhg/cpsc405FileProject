@@ -13,7 +13,14 @@
 #include "fcntl.h"
 #include "user.h"
 
+struct cpu cpus[NCPU];
+
 int fs;
+
+void panic(char *s) {
+    printf("%s\n", s);
+    exit(1);
+}
 
 int bread(uint block, char *buf) {
     int off = lseek(fs, block*BSIZE, SEEK_SET);
