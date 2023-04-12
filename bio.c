@@ -194,7 +194,15 @@ int main(int argc, char *argv[]) {
         tfs_close(fd2);
         tfs_close(fd3);
         tfs_close(fd4);
-        
+       
+        //Riley & Ethan's code here:
+        int fd5=tfs_open("rileyandethan", TO_CREATE | TO_RDWR,0);
+        printf("fd5:%d\n",fd5);
+        s=tfs_write(fd5,"Riley and Ethan here!",22);
+        printf("tfs_write bytes: %d\n",s);
+        tfs_close(fd5);
+
+
         // Write file info back to TDD and close TFS
         writefsinfo();
         closefs();
@@ -233,7 +241,13 @@ int main(int argc, char *argv[]) {
         printf("fd4: %d\n", fd4);
         s = tfs_read(fd4, buffer, 47);
         printf("tfs_read bytes: fd: %d, bytes read: %d value read: %s\n", fd4, s, buffer);
-
+    
+        
+        //Riley & Ethan's code here:
+        int fd5 = tfs_open("rileyandethan",TO_RDONLY,0);
+        printf("fd5: %d\n",fd5);
+        s=tfs_read(fd5,buffer,22);
+        printf("tfs_read bytes: fd: %d, bytes read: %d value read: %s\n", fd5, s, buffer);
 
         // Write file info back to TDD and close TFS
         writefsinfo();
